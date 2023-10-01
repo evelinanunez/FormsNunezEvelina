@@ -16,7 +16,7 @@ export class ReactiveFormsComponent {
        * Forma de hacerlo mas corto, con un array
        * Ej: nombreAlumno : [ valorPorDefecto]
        */
-      nombreAlumno: ['', [Validators.required, Validators.maxLength(50),Validators.minLength(7)]],
+      nombreAlumno: ['', [Validators.required, Validators.maxLength(25),Validators.minLength(7)]],
       apellidoAlumno :['',[Validators.required,Validators.minLength(5)]],
       fechaNacimiento: ['',[Validators.required]],
       emailform:['',[Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],

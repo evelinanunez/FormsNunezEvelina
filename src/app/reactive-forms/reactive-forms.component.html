@@ -20,15 +20,15 @@
           placeholder="Ingrese su nombre">
 
           <div class="invalid-feedback">
-            <ng-container *ngIf="nombreAlumnoControl.errors?.['required']">
-              Este campo es requerido
-            </ng-container>
- <!--            <ng-container *ngIf="nombreAlumnoControl.errors?.['maxLength']">
-              Este campo tiene como maximo 50 caracteres.
-            </ng-container>
-            <ng-container *ngIf="nombreAlumnoControl.errors?.['minLength']">
-              Este campo tiene como minimo 10 caracteres.
-            </ng-container> -->
+          <span *ngIf="nombreAlumnoControl.errors?.['required']">
+            El nombre no puede quedar vacío
+          </span>
+          <span *ngIf="nombreAlumnoControl.errors?.['minlength']">
+            Debe tener como mínimo 7 caracteres
+          </span>
+          <span *ngIf="nombreAlumnoControl.errors?.['maxLength']">
+            Debe tener como máximo 25 caracteres
+          </span>
           </div>
 
       </div>
@@ -43,9 +43,22 @@
         [ngClass]="{'is-invalid':apellidoAlumnoControl.invalid && apellidoAlumnoControl.touched }"
         placeholder="Ingrese su apellido">
         <div class="invalid-feedback">
-          <ng-container *ngIf="apellidoAlumnoControl.errors?.['required']">
-            Este campo es requerido
-          </ng-container>
+          <span *ngIf="apellidoAlumnoControl.errors?.['required']">
+            El apellido no puede quedar vacío
+          </span>
+          <span *ngIf="apellidoAlumnoControl.errors?.['minlength']">
+            Debe tener como mínimo 5 caracteres
+          </span>
+<!--
+          <div *ngIf="apellidoAlumnoControl.errors?.['required']">
+            El apellido no puede quedar vacío
+          </div>
+          <div *ngIf="apellidoAlumnoControl.errors?.['minLength']">
+            Debe tener como mínimo 7 caracteres
+          </div> -->
+ <!--          <ng-container *ngIf="apellidoAlumnoControl.errors?.['required']">
+            Debe tener como mínimo 7 caracteres
+          </ng-container> -->
         </div>
       </div>
 
