@@ -1,0 +1,158 @@
+
+<div class="container my-4 m-auto" style="width: 600px;">
+  <h2>Registro de Alumno</h2>
+  <form
+  [formGroup]="alumnoForm"
+  (ngSubmit)="onSubmit()"
+  >
+      <!-- Campo para el Nombre
+        'is-invalid': alumnoForm.controls['nombreAlumno'].invalid
+        Es lo mismo que poner que poner ís-invalid' = true, con el
+        ngClass agregamos clases dinamicamente.
+      -->
+      <div class="form-group my-3">
+          <label for="nombreCompleto">Nombre :</label>
+          <input
+          formControlName="nombreAlumno"
+          type="text" class="form-control"
+          id="nombreCompleto"
+          [ngClass]="{'is-invalid': nombreAlumnoControl.invalid && nombreAlumnoControl.touched}"
+          placeholder="Ingrese su nombre">
+
+          <div class="invalid-feedback">
+            <ng-container *ngIf="nombreAlumnoControl.errors?.['required']">
+              Este campo es requerido
+            </ng-container>
+ <!--            <ng-container *ngIf="nombreAlumnoControl.errors?.['maxLength']">
+              Este campo tiene como maximo 50 caracteres.
+            </ng-container>
+            <ng-container *ngIf="nombreAlumnoControl.errors?.['minLength']">
+              Este campo tiene como minimo 10 caracteres.
+            </ng-container> -->
+          </div>
+
+      </div>
+
+      <!-- Campo para el Apellido -->
+      <div class="form-group my-3">
+        <label for="nombreCompleto">Apellido:</label>
+        <input
+        formControlName="apellidoAlumno"
+        type="text" class="form-control"
+        id="nombreCompleto"
+        [ngClass]="{'is-invalid':apellidoAlumnoControl.invalid && apellidoAlumnoControl.touched }"
+        placeholder="Ingrese su apellido">
+        <div class="invalid-feedback">
+          <ng-container *ngIf="apellidoAlumnoControl.errors?.['required']">
+            Este campo es requerido
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Campo para la Fecha de Nacimiento -->
+      <div class="form-group my-3">
+          <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+          <input
+          formControlName="fechaNacimiento"
+          type="date"
+          class="form-control"
+          [ngClass]="{'is-invalid':fechaNacimientoControl.invalid && fechaNacimientoControl.touched }"
+          id="fechaNacimiento">
+          <div class="invalid-feedback">
+            <ng-container *ngIf="fechaNacimientoControl.errors?.['required']">
+              Este campo es requerido
+            </ng-container>
+          </div>
+      </div>
+
+      <!-- Campo para el email -->
+      <div class="form-group my-3">
+        <label for="email">Email:</label>
+        <input
+        formControlName="emailform"
+        type="email"
+        class="form-control"
+        [ngClass]="{'is-invalid':emailformControl.invalid && emailformControl.touched }"
+        id="email">
+        <div class="invalid-feedback">
+          <ng-container *ngIf="emailformControl.errors?.['email']">
+            El valor ingresado no es un email valido
+          </ng-container>
+          <ng-container *ngIf="emailformControl.errors?.['required']">
+            Este campo es requerido
+          </ng-container>
+<!--           <ng-container *ngIf="emailformControl.errors?.['pattern']">
+            El valor ingresado no es un email valido
+          </ng-container> -->
+        </div>
+      </div>
+
+      <!-- Campo para el Género -->
+      <div class="form-group my-3">
+        <label for="genero">Seleccione Género:</label>
+          <select class="form-select"
+           formControlName="genero"
+           id="genero"
+           aria-label="Default select example"
+           [ngClass]="{'is-invalid':generoControl.invalid && generoControl.touched }"
+           value="Ingrese su dirección actual">
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+          </select>
+          <div class="invalid-feedback">
+            <ng-container *ngIf="generoControl.errors?.['required']">
+              Tiene que seleccionar un genero
+            </ng-container>
+          </div>
+      </div>
+
+      <!-- Campo para la Dirección Actual -->
+      <div class="form-group my-3">
+          <label for="direccion">Dirección Actual:</label>
+          <input
+          formControlName="direccion"
+          type="text"
+          class="form-control"
+          id="direccion"
+          placeholder="Ingrese su dirección actual"
+          [ngClass]="{'is-invalid':direccionControl.invalid && direccionControl.touched }"
+          >
+          <div class="invalid-feedback">
+            <ng-container *ngIf="direccionControl.errors?.['required']">
+              Este campo es requerido
+            </ng-container>
+          </div>
+      </div>
+
+      <!-- Campo para el Número de Teléfono -->
+      <div class="form-group my-3">
+          <label for="telefono">Número de Teléfono:</label>
+          <input
+          formControlName="telefono"
+          type="tel"
+          class="form-control"
+          id="telefono"
+          placeholder="Ingrese su número de teléfono"
+          [ngClass]="{'is-invalid':telefonoControl.invalid && telefonoControl.touched }">
+          <div class="invalid-feedback">
+            <ng-container *ngIf="telefonoControl.errors?.['required']">
+              Este campo es requerido
+            </ng-container>
+          </div>
+      </div>
+
+      <div class="my-4">
+      <!-- Botón para enviar el formulario
+      [disabled]="alumnoForm.invalid"
+      -->
+      <button
+      [disabled]="alumnoForm.invalid"
+      type="submit"
+      class="btn btn-primary"
+      >Registrar</button>
+      </div>
+  </form>
+</div>
+<!-- Si queremos verlo de forma interactiva hacemos interpolación y lo pasamos por el pipe json -->
+{{alumnoForm.value | json}}
