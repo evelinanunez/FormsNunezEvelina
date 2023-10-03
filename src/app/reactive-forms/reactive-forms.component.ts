@@ -10,7 +10,6 @@ import { elDniDebeSerNumerico, menorDeEdad, noEvelinaValidators, validaLargoDni 
 export class ReactiveFormsComponent {
 
   alumnoForm : FormGroup;
-
   constructor( private formBuilder : FormBuilder){
     this.alumnoForm = this.formBuilder.group({
       /**
@@ -43,8 +42,10 @@ export class ReactiveFormsComponent {
 
 /*     console.log( this.alumnoForm.valid);
     console.log(this.alumnoForm); */
-    console.log(this.alumnoForm.value);
+
+     console.log(this.alumnoForm.value);
     // console.log(this.alumnoForm.controls['nombreAlumno'].value);
+
   }
 
   get dniControl() {
