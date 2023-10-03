@@ -26,8 +26,8 @@
           <span *ngIf="nombreAlumnoControl.errors?.['minlength']">
             Debe tener como mínimo 7 caracteres
           </span>
-          <span *ngIf="nombreAlumnoControl.errors?.['maxLength']">
-            Debe tener como máximo 25 caracteres
+          <span *ngIf="nombreAlumnoControl.errors?.['noEvelinaValidators']">
+              No se admite el nombre Evelina.
           </span>
           </div>
 
@@ -49,16 +49,7 @@
           <span *ngIf="apellidoAlumnoControl.errors?.['minlength']">
             Debe tener como mínimo 5 caracteres
           </span>
-<!--
-          <div *ngIf="apellidoAlumnoControl.errors?.['required']">
-            El apellido no puede quedar vacío
-          </div>
-          <div *ngIf="apellidoAlumnoControl.errors?.['minLength']">
-            Debe tener como mínimo 7 caracteres
-          </div> -->
- <!--          <ng-container *ngIf="apellidoAlumnoControl.errors?.['required']">
-            Debe tener como mínimo 7 caracteres
-          </ng-container> -->
+
         </div>
       </div>
 
@@ -77,6 +68,46 @@
             </ng-container>
           </div>
       </div>
+  <!-- Campo DNI -->
+      <div class="form-group my-3">
+        <label for="dni">DNI:</label>
+        <input
+        formControlName="dni"
+        type="text"
+        class="form-control"
+        [ngClass]="{'is-invalid': dniControl.invalid && dniControl.touched }"
+        id="dni">
+        <div class="invalid-feedback">
+          <ng-container *ngIf="dniControl.errors?.['required']">
+            Este campo es requerido
+          </ng-container>
+          <span  *ngIf="dniControl.errors?.['elDniDebeSerNumerico']">
+            El dni debe ser un campo numérico.
+          </span>
+          <span  *ngIf="dniControl.errors?.['validaLargoDni']">
+            El dni debe ser un campo numérico.
+          </span>
+        </div>
+    </div>
+
+      <!-- Campo para la Fecha de Nacimiento -->
+      <div class="form-group my-3">
+        <label for="edad">Edad:</label>
+        <input
+        formControlName="edad"
+        type="number"
+        class="form-control"
+        [ngClass]="{'is-invalid':edadAlumnoControl.invalid && edadAlumnoControl.touched }"
+        id="edad">
+        <div class="invalid-feedback">
+          <ng-container *ngIf="edadAlumnoControl.errors?.['required']">
+            Este campo es requerido
+          </ng-container>
+          <ng-container *ngIf="edadAlumnoControl.errors?.['menorDeEdad']">
+            No se puede registrar un menor de edad tiene que presentar autorización.
+          </ng-container>
+        </div>
+      </div>
 
       <!-- Campo para el email -->
       <div class="form-group my-3">
@@ -88,12 +119,13 @@
         [ngClass]="{'is-invalid':emailformControl.invalid && emailformControl.touched }"
         id="email">
         <div class="invalid-feedback">
-          <ng-container *ngIf="emailformControl.errors?.['email']">
-            El valor ingresado no es un email valido
-          </ng-container>
           <ng-container *ngIf="emailformControl.errors?.['required']">
             Este campo es requerido
           </ng-container>
+          <ng-container *ngIf="emailformControl.errors?.['email']">
+            El valor ingresado no es un email valido
+          </ng-container>
+
 <!--           <ng-container *ngIf="emailformControl.errors?.['pattern']">
             El valor ingresado no es un email valido
           </ng-container> -->
@@ -167,5 +199,23 @@
       </div>
   </form>
 </div>
+<div class=" container-fluid text-center">
+  <div>
+    <p> Errores del control Personalizado, no se admiten 'evelina'</p>
+    <pre>{{alumnoForm.controls['nombreAlumno'].errors | json}}</pre>
+  </div>
+  <div>
+    <p> Errores del control Personalizado, minoria de edad'</p>
+    <pre>{{alumnoForm.controls['edad'].errors | json}}</pre>
+  </div>
+  <div>
+    <p> Errores del control Personalizado, dni debe ser numerico y cumplir con el largo correcto</p>
+    <pre>{{alumnoForm.controls['dni'].errors | json}}</pre>
+  </div>
+  <div>
+    <p>Valor del formulario</p>
+    <pre>{{alumnoForm.value | json}}</pre>
+  </div>
+</div>
 <!-- Si queremos verlo de forma interactiva hacemos interpolación y lo pasamos por el pipe json -->
-{{alumnoForm.value | json}}
+

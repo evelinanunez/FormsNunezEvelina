@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup ,Validators} from '@angular/forms';
+import { elDniDebeSerNumerico, menorDeEdad, noEvelinaValidators, validaLargoDni } from '../utils/custom-validators';
 
 @Component({
   selector: 'app-reactive-forms-alumno',
@@ -16,11 +17,12 @@ export class ReactiveFormsComponent {
        * Forma de hacerlo mas corto, con un array
        * Ej: nombreAlumno : [ valorPorDefecto]
        */
-      nombreAlumno: ['', [Validators.required, Validators.maxLength(25),Validators.minLength(7)]],
+      nombreAlumno :['',[Validators.required, Validators.minLength(7), noEvelinaValidators]],
       apellidoAlumno :['',[Validators.required,Validators.minLength(5)]],
+      dni: ['',[Validators.required,elDniDebeSerNumerico, validaLargoDni]],
       fechaNacimiento: ['',[Validators.required]],
+      edad: ['', [Validators.required,menorDeEdad]],
       emailform:['',[Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
-      //emailform:['',[Validators.required, Validators.email]],
       genero: ['',[Validators.required]],
       direccion : ['',[Validators.required]],
       telefono : ['',[Validators.required]],
@@ -45,6 +47,13 @@ export class ReactiveFormsComponent {
     // console.log(this.alumnoForm.controls['nombreAlumno'].value);
   }
 
+  get dniControl() {
+    return this.alumnoForm.controls['dni'];
+  }
+
+  get edadAlumnoControl(){
+    return this.alumnoForm.controls['edad']
+  }
   get nombreAlumnoControl(){
     return this.alumnoForm.controls['nombreAlumno'];
   }
