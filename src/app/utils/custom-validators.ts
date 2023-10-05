@@ -32,9 +32,9 @@ export function elDniDebeSerNumerico (control :AbstractControl) : ValidationErro
 }
 
 export function validaLargoDni ( control : AbstractControl) : ValidationErrors | null{
-   if(control.value.length == 11){
+   if( control.value.length > 11){
     return {
-      largoDniCorrecto: true,
+      largoDniIncorrecto: true,
     }
    }
    return null;

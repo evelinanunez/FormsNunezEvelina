@@ -26,7 +26,7 @@
           <span *ngIf="nombreAlumnoControl.errors?.['minlength']">
             Debe tener como mínimo 7 caracteres
           </span>
-          <span *ngIf="nombreAlumnoControl.errors?.['noEvelinaValidators']">
+          <span *ngIf="nombreAlumnoControl.errors?.['noEvelina']">
               No se admite el nombre Evelina.
           </span>
           </div>
@@ -81,13 +81,14 @@
           <ng-container *ngIf="dniControl.errors?.['required']">
             Este campo es requerido
           </ng-container>
-          <span  *ngIf="dniControl.errors?.['elDniDebeSerNumerico']">
+          <ng-container  *ngIf="dniControl.errors?.['noEsUnNumero']">
             El dni debe ser un campo numérico.
-          </span>
-          <span  *ngIf="dniControl.errors?.['validaLargoDni']">
-            El dni debe ser un campo numérico.
+          </ng-container>
+          <span  *ngIf="dniControl.errors?.['largoDniIncorrecto']">
+            El dni debe tener como máximo 11 digitos.
           </span>
         </div>
+
     </div>
 
       <!-- Campo para la Fecha de Nacimiento -->
